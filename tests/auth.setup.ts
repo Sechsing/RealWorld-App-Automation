@@ -21,6 +21,10 @@ setup('create authenticated storage state via API', async ({ request }) => {
         }
     });
 
+    if (!response.ok()) {
+        const errorBody = await response.text();
+        console.error('Login failed. Status:', response.status, 'Body:', errorBody);
+    }
     expect(response.ok()).toBeTruthy();
     
     await request.storageState({ path: storageState });
