@@ -6,26 +6,19 @@ const email = process.env.REALWORLD_EMAIL;
 const password = process.env.REALWORLD_PASSWORD;
 
 if (!email || !password) {
-    throw new Error(
-        'Please set REALWORLD_EMAIL and REALWORLD_PASSWORD before running Playwright tests.'
-    );
+    throw new Error('Please set REALWORLD_EMAIL and REALWORLD_PASSWORD variables.');
 }
 
-setup('create authenticated storage state via API', async ({ request }) => {
-    const response = await request.post('https://api.realworld.show/api/users/login', {
-        data: {
-            user: {
-                email: email,       
-                password: password  
-            }
-        }
-    });
+setup('create authenticated storage state via UI', async ({ page }) => {
+    await page.goto('/login');
 
-    if (!response.ok()) {
-        const errorBody = await response.text();
-        console.error('Login failed. Status:', response.status(), 'Body:', errorBody);
-    }
-    expect(response.ok()).toBeTruthy();
+    await page.getByRole('textbox', { name: /email/i }).fill(email);
+    await page.getByRole('textbox', { name: /password/i }).fill(password);
+    await page.getByRole('button', { name: /sign in/i }).click();
+
+    // Wait until the UI updates and reflects a signed-in profile
+    await expect(page.getByRole('link', { name: /sign in/i })).not.toBeVisible();
     
-    await request.storageState({ path: storageState });
+    // Save the authentic session state map to disk
+    await page.context().storageState({ path: storageState });
 });
