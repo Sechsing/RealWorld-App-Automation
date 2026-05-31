@@ -17,14 +17,11 @@ test.describe('Home Page', () => {
         await expect(homePage.title).toBeVisible();
     });
 
-    test('should display logo in nav bar', async () => {
+    test('should display logo in nav bar and navigate to home page', async () => {
         await expect(homePage.logo).toBeVisible();
-    });
+        await homePage.logo.click();
 
-    test('should navigate to home page', async ({ page }) => {
-        await homePage.conduitLink.click();
-
-        await expect(page).toHaveURL('/');
+        await expect(homePage.page).toHaveURL('/');
     });
 
     test('should have the home button and navigate to home page', async ({ page}) => {

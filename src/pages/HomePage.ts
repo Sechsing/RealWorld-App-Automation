@@ -4,7 +4,6 @@ export class HomePage {
   readonly page: Page;
   readonly title: Locator;
   readonly logo: Locator;
-  readonly conduitLink: Locator;
   readonly homeLink: Locator;
   readonly signInLink: Locator;
   readonly signUpLink: Locator;
@@ -19,7 +18,6 @@ export class HomePage {
     // Brand & Navigation Locators
     this.title = page.getByRole('heading', { name: 'Conduit' });
     this.logo = page.getByRole('navigation').getByRole('img', { name: /conduit/i });
-    this.conduitLink = page.locator('app-layout-header').getByRole('link', { name: 'Conduit' });
     this.homeLink = page.getByRole('link', { name: 'Home' });
     this.signInLink = page.getByRole('link', { name: /sign in/i });
     this.signUpLink = page.getByRole('link', { name: /sign up/i });
