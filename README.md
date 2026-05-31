@@ -1,6 +1,6 @@
 # RealWorld-App-Automation
 
-An E2E test automation framework built to validate the **Conduit RealWorld App** (Medium.com clone) using **Playwright**, **TypeScript**, and modern software engineering practices.
+An E2E test automation framework built to validate the **Conduit RealWorld App** (Medium.com clone) using **Playwright**, **TypeScript**, and software engineering practices.
 
 ---
 
@@ -16,7 +16,7 @@ An E2E test automation framework built to validate the **Conduit RealWorld App**
 
 ## 🛠️ Tech Stack & Tools
 
-*   **Engine:** Playwright (Latest)
+*   **Engine:** Playwright 
 *   **Language:** TypeScript
 *   **Design Pattern:** Page Object Model (POM) & Custom Fixtures
 *   **CI/CD Orchestration:** GitHub Actions
@@ -29,7 +29,7 @@ An E2E test automation framework built to validate the **Conduit RealWorld App**
 ```text
 ├── .github/workflows/       # Continuous Integration pipeline setup
 ├── src/
-│   ├── pages/               # Page Objects (BasePage, LoginPage, ArticlePage, etc.)
+│   ├── pages/               # Page Objects 
 │   ├── fixtures/            # Custom Playwright test fixture extensions
 │   └── utils/               # Network/API utility helper suites
 ├── tests/
