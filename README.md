@@ -1,13 +1,13 @@
 # RealWorld-App-Automation
 
-An E2E test automation framework built to validate the **Conduit RealWorld App** (Medium.com clone) using **Playwright**, **TypeScript**, and software engineering practices.
+An E2E test automation framework built to validate the **Conduit RealWorld App** (Medium.com clone) using **Playwright** and **TypeScript**.
 
 ---
 
 ## 🏗️ Framework Architecture Highlights
 
-*   **Global Authentication Setup (`storageState`):** Bypasses repetitive UI login forms. A background setup project handles authentication once via a fast API `POST` request, saving the browser context globally to slash overall suite execution time.
-*   **Decoupled Page Object Model (POM):** Enforces a clean separation between page structural elements (locators/interactions) and the actual assertion test scripts.
+*   **Global Authentication Setup (storageState):** Bypasses repetitive UI login forms. A background setup project handles authentication once via a fast API POST request, saving the browser context globally to slash overall suite execution time.
+*   **Decoupled Page Object Model (POM):** Enforces a clean separation between page elements or locators and the actual assertion test scripts.
 *   **Custom Test Fixtures:** Extends Playwright's core test engine to automatically inject page objects. This eliminates messy object instantiation inside spec files.
 *   **API-Accelerated Data Seeding:** Utilizes Playwright’s backend request context to seed data (e.g., creating articles or posting comments) instantly before UI assertions execute, ensuring isolated, independent test states.
 *   **Fail-Safe CI/CD Visibility:** Completely integrated with GitHub Actions to trigger test runs on every pull request, configuring automatic retries and generating trace reports on failure.
