@@ -35,6 +35,10 @@ test.describe('Home Page', () => {
         await expect(homePage.newArticleLink).not.toBeVisible();
     });
 
+    test('should not have settings link visible for unauthenticated users', async () => {
+        await expect(homePage.settingsLink).not.toBeVisible();
+    });
+
     test('should have sign in and sign up buttons', async () => {
         await expect(homePage.signInLink).toBeVisible();
         await expect(homePage.signUpLink).toBeVisible();

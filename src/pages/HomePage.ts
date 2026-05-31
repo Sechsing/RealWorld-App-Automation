@@ -6,6 +6,7 @@ export class HomePage {
   readonly logo: Locator;
   readonly homeLink: Locator;
   readonly newArticleLink: Locator;
+  readonly settingsLink: Locator;
   readonly signInLink: Locator;
   readonly signUpLink: Locator;
   readonly globalFeedTab: Locator;
@@ -21,6 +22,7 @@ export class HomePage {
     this.logo = page.getByRole('navigation').getByRole('img', { name: /conduit/i });
     this.homeLink = page.getByRole('link', { name: 'Home' });
     this.newArticleLink = page.getByRole('link', { name: 'New Article' });
+    this.settingsLink = page.getByRole('link', { name: 'Settings' });
     this.signInLink = page.getByRole('link', { name: /sign in/i });
     this.signUpLink = page.getByRole('link', { name: /sign up/i });
     this.footer = page.getByRole('contentinfo');
