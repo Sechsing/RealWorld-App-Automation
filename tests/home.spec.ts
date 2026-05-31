@@ -31,6 +31,10 @@ test.describe('Home Page', () => {
         await expect(page).toHaveURL('/');
     });
 
+    test('should not have new article link visible for unauthenticated users', async () => {
+        await expect(homePage.newArticleLink).not.toBeVisible();
+    });
+
     test('should have sign in and sign up buttons', async () => {
         await expect(homePage.signInLink).toBeVisible();
         await expect(homePage.signUpLink).toBeVisible();

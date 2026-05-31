@@ -1,7 +1,7 @@
 import path from 'path';
 import { test as setup, expect } from '@playwright/test';
 
-const storageState = path.resolve(process.cwd(), 'playwright/.auth/user.json');
+const storageState = path.resolve(process.cwd(), '.auth/user.json');
 const email = process.env.REALWORLD_EMAIL;
 const password = process.env.REALWORLD_PASSWORD;
 
@@ -23,7 +23,7 @@ setup('create authenticated storage state via API', async ({ request }) => {
 
     if (!response.ok()) {
         const errorBody = await response.text();
-        console.error('Login failed. Status:', response.status, 'Body:', errorBody);
+        console.error('Login failed. Status:', response.status(), 'Body:', errorBody);
     }
     expect(response.ok()).toBeTruthy();
     
