@@ -18,17 +18,17 @@ export class HomePage {
     this.page = page;
     
     // Brand & Navigation Locators
-    this.title = page.getByRole('heading', { name: 'Conduit' });
+    this.title = page.getByRole('heading', { name: /conduit/i });
     this.logo = page.getByRole('navigation').getByRole('img', { name: /conduit/i });
-    this.homeLink = page.getByRole('link', { name: 'Home' });
-    this.newArticleLink = page.getByRole('link', { name: 'New Article' });
-    this.settingsLink = page.getByRole('link', { name: 'Settings' });
+    this.homeLink = page.getByRole('link', { name: /home/i });
+    this.newArticleLink = page.getByRole('link', { name: /new article/i });
+    this.settingsLink = page.getByRole('link', { name: /settings/i });
     this.signInLink = page.getByRole('link', { name: /sign in/i });
     this.signUpLink = page.getByRole('link', { name: /sign up/i });
     this.footer = page.getByRole('contentinfo');
     
     // Main Content Layout Locators
-    this.globalFeedTab = page.getByRole('link', { name: 'Global Feed' });
+    this.globalFeedTab = page.getByRole('link', { name: /global Feed/i });
     this.popularTagsHeading = page.getByText('Popular Tags');
     this.articleCards = page.locator('app-article-list').locator('app-article-preview');
   }
