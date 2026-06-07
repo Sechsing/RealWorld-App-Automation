@@ -17,7 +17,7 @@ export class HomePage {
   constructor(page: Page) {
     this.page = page;
     
-    // Brand & Navigation Locators
+    // Header and Footer Element Locators
     this.title = page.getByRole('heading', { name: /conduit/i });
     this.logo = page.getByRole('navigation').getByRole('img', { name: /conduit/i });
     this.homeLink = page.getByRole('link', { name: /home/i });

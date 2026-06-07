@@ -14,7 +14,21 @@ test.describe('Authenticated Home Page', () => {
         await expect(authenticatedHomePage.signUpLink).not.toBeVisible();
     });
 
-    test('should display new article link and navigate to the create new article page', async ({ page }) => {
+    test('should display logo in nav bar and navigate to home page', async ({ page }) => {
+        await expect(authenticatedHomePage.logo).toBeVisible();
+        await authenticatedHomePage.logo.click();
+
+        await expect(page).toHaveURL('/');
+    });
+
+     test('should have the home link and navigate to home page', async ({ page}) => {
+        await expect(authenticatedHomePage.homeLink).toBeVisible();
+        await authenticatedHomePage.homeLink.click();
+
+        await expect(page).toHaveURL('/');
+    });
+
+    test('should display new article link and navigate to the new article page', async ({ page }) => {
         await expect(authenticatedHomePage.newArticleLink).toBeVisible();
         await authenticatedHomePage.newArticleLink.click();
         

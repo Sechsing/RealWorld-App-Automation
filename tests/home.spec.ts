@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../src/pages/HomePage';
 
 test.describe('Home Page', () => {
-    // Declare the homePage variable instance scope for it to be accessed in all tests
     let homePage: HomePage;
 
     // Ignore the global logged-in storage state
@@ -24,7 +23,7 @@ test.describe('Home Page', () => {
         await expect(homePage.page).toHaveURL('/');
     });
 
-    test('should have the home button and navigate to home page', async ({ page}) => {
+    test('should have the home link and navigate to home page', async ({ page}) => {
         await expect(homePage.homeLink).toBeVisible();
         await homePage.homeLink.click();
 
@@ -72,7 +71,7 @@ test.describe('Home Page', () => {
 
     test('should display logo in footer and navigate to home page', async ({ page }) => {
         await expect(homePage.footer.getByRole('link', { name: 'Conduit' })).toBeVisible();
-        await homePage.footer.getByRole('link', { name: 'Conduit' }).click();
+        await homePage.footer.getByRole('link', { name: /conduit/i }).click();
 
         await expect(page).toHaveURL('/');
     });
