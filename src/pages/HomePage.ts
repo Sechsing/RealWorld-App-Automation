@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test';
+import { Footer } from '../components/Footer';
 
 export class HomePage {
   readonly page: Page;
@@ -12,7 +13,7 @@ export class HomePage {
   readonly globalFeedTab: Locator;
   readonly articleCards: Locator;
   readonly popularTagsHeading: Locator;
-  readonly footer: Locator;
+  readonly footer: Footer;
 
   constructor(page: Page) {
     this.page = page;
@@ -25,11 +26,11 @@ export class HomePage {
     this.settingsLink = page.getByRole('link', { name: /settings/i });
     this.signInLink = page.getByRole('link', { name: /sign in/i });
     this.signUpLink = page.getByRole('link', { name: /sign up/i });
-    this.footer = page.getByRole('contentinfo');
+    this.footer = new Footer(page);
     
-    // Main Content Layout Locators
+    // Main Content Locators
     this.globalFeedTab = page.getByRole('link', { name: /global Feed/i });
-    this.popularTagsHeading = page.getByText('Popular Tags');
+    this.popularTagsHeading = page.getByText(/popular tags/i);
     this.articleCards = page.locator('app-article-list').locator('app-article-preview');
   }
 

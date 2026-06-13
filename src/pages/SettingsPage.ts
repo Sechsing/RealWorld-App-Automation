@@ -1,12 +1,10 @@
 import { Page, Locator } from '@playwright/test';
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
 
 export class SettingsPage {
     readonly page: Page;
-    readonly logo: Locator;
-    readonly homeLink: Locator;
-    readonly settingsLink: Locator;
-    readonly newArticleLink: Locator;
-    readonly userProfileLink: Locator;
+    readonly header: Header;
     readonly title: Locator;
     readonly profilePictureUrlField: Locator;
     readonly usernameField: Locator;
@@ -15,22 +13,18 @@ export class SettingsPage {
     readonly passwordField: Locator;
     readonly updateSettingsButton: Locator;
     readonly logoutButton: Locator;
-    readonly footer: Locator;
+    readonly footer: Footer;
 
     constructor(page: Page) {
+        this.page = page;
+        
         const userEmail = process.env.REALWORLD_EMAIL || "";
 
-        this.page = page;
-
         // Header and Footer Element Locators
-        this.logo = page.getByRole('navigation').getByRole('img', { name: /conduit/i });
-        this.homeLink = page.getByRole('link', { name: /home/i });
-        this.settingsLink = page.getByRole('link', { name: /settings/i });
-        this.newArticleLink = page.getByRole('link', { name: /new article/i });
-        this.userProfileLink = page.getByRole('link', { name: new RegExp(userEmail, 'i') });
-        this.footer = page.getByRole('contentinfo');
+        this.header = new Header(page);
+        this.footer = new Footer(page);
 
-        // Main Content Layout Locators
+        // Main Content Locators
         this.title = page.getByRole('heading', { name: /settings/i });
         this.profilePictureUrlField = page.getByRole('textbox', { name: /Url of Profile Picture/i });
         this.usernameField = page.getByRole('textbox', { name: /Username/i });

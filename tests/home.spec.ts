@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../src/pages/HomePage';
+import { testFooter } from './shared/layout';
 
 test.describe('Home Page', () => {
     let homePage: HomePage;
@@ -11,6 +12,8 @@ test.describe('Home Page', () => {
         homePage = new HomePage(page);
         await homePage.goto();
     });
+
+    testFooter(() => homePage);
 
     test('should display the page title', async () => {
         await expect(homePage.title).toBeVisible();
@@ -67,22 +70,5 @@ test.describe('Home Page', () => {
     test('should display the tags', async () => {
         await expect(homePage.popularTagsHeading).toBeVisible();
         await expect(homePage.popularTagsHeading).toHaveText('Popular Tags');
-    });
-
-    test('should display logo in footer and navigate to home page', async ({ page }) => {
-        await expect(homePage.footer.getByRole('link', { name: 'Conduit' })).toBeVisible();
-        await homePage.footer.getByRole('link', { name: /conduit/i }).click();
-
-        await expect(page).toHaveURL('/');
-    });
-
-    test('should display the footer copyright notice', async () => {
-        await expect(homePage.footer.getByText(/An interactive learning project/i)).toBeVisible();  
-    });
-
-    test('should navigate to Github repository', async ({ page }) => {
-        await homePage.footer.getByRole('link', { name: 'RealWorld OSS Project' }).click();
-
-        await expect(page).toHaveURL('https://github.com/realworld-apps/realworld');
     });
 });

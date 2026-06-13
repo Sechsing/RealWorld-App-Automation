@@ -1,16 +1,35 @@
 import { Page, Locator } from '@playwright/test';
-import { HomePage } from './HomePage';
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
 
-export class AuthenticatedHomePage extends HomePage {
-    readonly userProfileLink: Locator;
+export class AuthenticatedHomePage {
+    readonly page: Page;
+    readonly header: Header;
+    readonly signInLink: Locator;
+    readonly signUpLink: Locator;
     readonly yourFeedTab: Locator;
+    readonly globalFeedTab: Locator;
+    readonly articleCards: Locator;
+    readonly popularTagsHeading: Locator;
+    readonly footer: Footer;
 
     constructor(page: Page) {
-        super(page);
+        this.page = page;
 
-        const userEmail = process.env.REALWORLD_EMAIL || "";
+        // Header and Footer Element Locators
+        this.header = new Header(page);
+        this.signInLink = page.getByRole('link', { name: /sign in/i });
+        this.signUpLink = page.getByRole('link', { name: /sign up/i });
+        this.footer = new Footer(page);
 
-        this.userProfileLink = page.getByRole('link', { name: new RegExp(userEmail, 'i') });
+        // Main Content Locators
         this.yourFeedTab = page.getByRole('link', { name: /your feed/i });
+        this.globalFeedTab = page.getByRole('link', { name: /global Feed/i });
+        this.popularTagsHeading = page.getByText(/popular tags/i);
+        this.articleCards = page.locator('app-article-list').locator('app-article-preview');
+    }
+    
+    async goto() {
+        await this.page.goto('/');
     }
 }
