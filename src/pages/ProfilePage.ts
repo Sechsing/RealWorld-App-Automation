@@ -23,9 +23,9 @@ export class ProfilePage {
         this.footer = new Footer(page);
 
         // Main Content Locators
-        this.profilePicture = page.getByRole('img', { name: /profile picture/i });
+        this.profilePicture = page.locator('.user-info').getByRole('img');
         this.username = page.getByRole('heading', { name: `${this.userEmail}` });
-        this.editProfileButton = page.getByRole('button', { name: /Edit Profile Settings/i });
+        this.editProfileButton = page.getByRole('link', { name: /Edit Profile Settings/i });
         this.myPostsTab = page.getByRole('link', { name: /my posts/i });
         this.favoritedPostsTab = page.getByRole('link', { name: /favorited posts/i });
         this.articleCards = page.locator('app-profile').locator('app-article-preview');

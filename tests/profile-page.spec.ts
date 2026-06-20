@@ -19,7 +19,7 @@ test.describe('Profile Page Tests', () => {
     });
 
     test('should have edit profile settings button enabled', async () => {
-        await expect(profilePage.editProfileButton).toBeEnabled();
+        await expect(profilePage.editProfileButton).toBeVisible();
         await profilePage.editProfileButton.click();
     });
 
@@ -27,14 +27,14 @@ test.describe('Profile Page Tests', () => {
         await expect(profilePage.myPostsTab).toBeVisible();
         await profilePage.myPostsTab.click();
 
-        await expect(page).toHaveURL(`/${profilePage.userEmail}`);
+        await expect(page).toHaveURL(`/profile/${profilePage.userEmail}`);
     });
 
     test('should display the favorited posts tab and navigate to the favorited posts page', async ({ page }) => {
         await expect(profilePage.favoritedPostsTab).toBeVisible();
         await profilePage.favoritedPostsTab.click();
 
-        await expect(page).toHaveURL(`/${profilePage.userEmail}/favorites`);
+        await expect(page).toHaveURL(`/profile/${profilePage.userEmail}/favorites`);
     });
 });
 
