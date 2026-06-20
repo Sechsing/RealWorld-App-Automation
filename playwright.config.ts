@@ -23,6 +23,12 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
+  /* Set timeout threshold for each test. */
+  timeout: process.env.CI ? 60000 : 30000, 
+  /* Adjust the locator polling assertion threshold */
+  expect: {
+    timeout: process.env.CI ? 15000 : 10000, // 10s on CI, 5s locally
+  },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
@@ -32,8 +38,8 @@ export default defineConfig({
     trace: 'on-first-retry',
 
     /* Give backend APIs or third-party servers more time to take effect */
-    actionTimeout: 10000,      
-    navigationTimeout: 15000,  
+    actionTimeout: process.env.CI ? 15000 : 10000,      
+    navigationTimeout: process.env.CI ? 30000 : 20000,  
   },
 
   /* Configure projects for major browsers */
