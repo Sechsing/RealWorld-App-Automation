@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "An E2E test automation framework built to validate the **Conduit RealWorld App** (Medium.com clone) using **Playwright**, **TypeScript**, and modern software engineering practices.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sechsing/RealWorld-App-Automation.git"
