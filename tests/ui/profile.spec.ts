@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { ProfilePage } from '../../src/pages/ProfilePage';
 import { testHeader, testFooter } from './shared/layout';
 
-test.describe('Profile Page Tests', () => {
+test.describe('Profile Page', () => {
     let profilePage: ProfilePage;
 
     test.beforeEach(async ({ page }) => {

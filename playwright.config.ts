@@ -50,7 +50,16 @@ export default defineConfig({
       testMatch: /auth\.setup\.ts/,
     },
     {
+      name: 'api',
+      testMatch: /api\/.*\.spec\.ts/,
+      use: { 
+        ...devices['Desktop Chrome'],
+        headless: true,
+      },
+    },
+    {
       name: 'chromium',
+      testIgnore: /api\/.*\.spec\.ts/,
       use: { 
         ...devices['Desktop Chrome'],
         storageState: '.auth/user.json',
@@ -60,6 +69,7 @@ export default defineConfig({
 
     {
       name: 'firefox',
+      testIgnore: /api\/.*\.spec\.ts/,
       use: { 
         ...devices['Desktop Firefox'],
         storageState: '.auth/user.json',
@@ -69,6 +79,7 @@ export default defineConfig({
 
     {
       name: 'webkit',
+      testIgnore: /api\/.*\.spec\.ts/,
       use: { 
         ...devices['Desktop Safari'],
         storageState: '.auth/user.json',
