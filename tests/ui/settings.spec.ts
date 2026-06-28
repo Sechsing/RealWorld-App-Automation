@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { SettingsPage } from '../src/pages/SettingsPage';
+import { SettingsPage } from '../../src/pages/SettingsPage';
 import { testHeader, testFooter } from './shared/layout';
 
 test.describe('Settings Page', () => {
